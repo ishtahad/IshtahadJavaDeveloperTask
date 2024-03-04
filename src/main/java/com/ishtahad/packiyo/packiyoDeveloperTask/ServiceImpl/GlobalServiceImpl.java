@@ -75,7 +75,6 @@ public class GlobalServiceImpl implements GlobalService {
             for (CsvDataDTO data : dataDTOList) {
                 String xmlString = generateXmlString(data.getCountryName(), data.getCityName());
                 fileServerService.uploadXmlToFTP(xmlString, data.getCountryName());
-                logger.info("SuccessFully Uploaded XML to FTP Server for City: " + data.getCityName());
             }
             map.put("status", 1);
             map.put("message", "Successfully Generated And Saved XML in FTP server");
