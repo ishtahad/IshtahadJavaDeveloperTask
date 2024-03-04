@@ -1,0 +1,12 @@
+package com.ishtahad.packiyo.packiyoDeveloperTask.DTO.HotelDTOs;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class HotelAddressDTO {
+    private String street;
+    private String city;
+    private String province;
+}

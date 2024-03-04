@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Success!</h5>
+            <!-- Inject the city name from the model attribute -->
+            <p class="card-text">The desired XML for <span th:text="${country}" class="font-weight-bold"></span> was successfully saved.</p>
+            <h2> Generated XML Data </h2>
+            <pre><code th:text="${result}"></code></pre>
+            <a href="/" class="btn btn-primary">Go Back</a>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS (optional, if you need JavaScript) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

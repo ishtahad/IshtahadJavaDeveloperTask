@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Approach</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Selection Criteria</h1>
+    <form action="#" th:action="@{/submit}" th:object="${inputForm}" method="post" onsubmit="return validateForm()">
+        <div class="form-group">
+            <label for="country">Country<span class="text-danger">*</span>:</label>
+            <select id="country" class="form-control" th:field="*{countryName}" required>
+                <option value="">Select Country</option>
+                <option th:each="option : ${countryList}" th:value="${option.countryName}" th:text="${option.countryName}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="city">City<span class="text-danger">*</span>:</label>
+            <input type="text" class="form-control" id="city" th:field="*{cityName}" required>
+        </div>
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" class="form-control" id="date" th:field="*{date}">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <div th:insert="~{dataDisplay :: dataDisplay (result=${result})}"></div>
+</div>
+
+</body>
+<script>
+    function validateForm() {
+
+        var countrySelect = document.getElementById("country");
+        var citySelect = document.getElementById("city");
+        var isValid = true;
+
+        if (countrySelect.value === "") {
+            countrySelect.classList.add("is-invalid");
+            isValid = false;
+        } else {
+            countrySelect.classList.remove("is-invalid");
+        }
+
+        if (citySelect.value === "") {
+            citySelect.classList.add("is-invalid");
+            isValid = false;
+        } else {
+            citySelect.classList.remove("is-invalid");
+        }
+
+        return isValid;
+
+    }
+</script>
+
+</html>

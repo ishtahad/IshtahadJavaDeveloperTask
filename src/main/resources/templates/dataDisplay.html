@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Table</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body th:fragment="dataDisplay">
+<div class="container mt-5">
+    <h1 th:if="${not #lists.isEmpty(hotelList)}">Hotel (Selected Data)</h1>
+    <table class="table table-striped" th:if="${not #lists.isEmpty(hotelList)}">
+        <thead>
+        <tr>
+            <th>City</th>
+            <th>Display Name</th>
+            <th>Short Name</th>
+            <th>Street</th>
+            <th>Province</th>
+            <th>IsoCode3</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+        </tr>
+        </thead>
+        <tbody th:if="${#lists.isEmpty(hotelList)}">
+        <tr>
+            <td colspan="10">No data available</td>
+        </tr>
+        </tbody>
+        <tbody th:if="${not #lists.isEmpty(hotelList)}">
+        <tr th:each="data : ${hotelList}">
+            <td th:text="${data.cityName}"></td>
+            <td th:text="${data.regionDisplayName}"></td>
+            <td th:text="${data.shortName}"></td>
+            <td th:text="${data.street}"></td>
+            <td th:text="${data.province}"></td>
+            <td th:text="${data.isoCode3}"></td>
+            <td th:text="${data.lat}"></td>
+            <td th:text="${data.lon}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <h1 th:if="${not #lists.isEmpty(weatherList)}">Weather (Selected Data)</h1>
+    <table class="table table-striped" th:if="${not #lists.isEmpty(weatherList)}">
+        <thead>
+        <tr>
+            <th>Time Zone</th>
+            <th>Wind Speed</th>
+            <th>Wind Degree</th>
+            <th>visibility</th>
+            <th>Feels Like</th>
+            <th>Temp(min)</th>
+            <th>Temp(Max)</th>
+            <th>Pressure</th>
+            <th>Humidity</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+        </tr>
+        </thead>
+        <tbody th:if="${#lists.isEmpty(weatherList)}">
+        <tr>
+            <td colspan="11">No data available</td>
+        </tr>
+        </tbody>
+        <tbody th:if="${not #lists.isEmpty(weatherList)}">
+        <tr th:each="data : ${weatherList}">
+            <td th:text="${data.timeZone}"></td>
+            <td th:text="${data.windSpeed}"></td>
+            <td th:text="${data.windDeg}"></td>
+            <td th:text="${data.visibility}"></td>
+            <td th:text="${data.feels_like}"></td>
+            <td th:text="${data.temp_min}"></td>
+            <td th:text="${data.temp_max}"></td>
+            <td th:text="${data.pressure}"></td>
+            <td th:text="${data.humidity}"></td>
+            <td th:text="${data.lat}"></td>
+            <td th:text="${data.lon}"></td>
+        </tbody>
+    </table>
+      <form th:action="@{/export}" method="post" th:if="${not #lists.isEmpty(hotelList) and not #lists.isEmpty(weatherList)}">
+          <input type="hidden" name="city" th:value="${city}" />
+          <input type="hidden" name="country" th:value="${country}" />
+          <button type="submit" class="btn btn-primary">Export</button>
+      </form>
+
+</div>
+
+</body>
+</html>
