@@ -51,7 +51,7 @@ public class CamelRoutingService extends RouteBuilder {
                 .maximumRedeliveries(4)
                 .redeliveryDelay(2000);
 
-        from("timer://myTimer?period=600000")
+        from("timer://myTimer?period=21600000")
                 .log("CSV Data Read and Processing Start from FTP Server....")
                 .pollEnrich().simple("ftp://" + username + ":" + password + "@" + hostname + "/?fileName=" + fileName)
                 .convertBodyTo(String.class)
