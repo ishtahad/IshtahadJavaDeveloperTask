@@ -6,6 +6,7 @@ import com.ishtahad.packiyo.packiyoDeveloperTask.DTO.HotelDisplayDTO;
 import com.ishtahad.packiyo.packiyoDeveloperTask.DTO.WeatherDTOs.WeatherPrimaryDTO;
 import com.ishtahad.packiyo.packiyoDeveloperTask.DTO.WeatherDisplayDTO;
 import com.ishtahad.packiyo.packiyoDeveloperTask.DTO.XmlDTO;
+import com.ishtahad.packiyo.packiyoDeveloperTask.Enum.ProjectStatus;
 import com.ishtahad.packiyo.packiyoDeveloperTask.Services.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,14 +54,14 @@ public class GlobalServiceImpl implements GlobalService {
         try {
             String xmlString = generateXmlString(country, city);
             fileServerService.uploadXmlToFTP(xmlString, country);
-            map.put("status", 1);
+            map.put("status", ProjectStatus.SUCCESSFUL.getStatus());
             map.put("message", "Successfully Generated And Saved XML in FTP server");
             map.put("body", xmlString);
             return map;
         } catch (Exception e) {
             logger.error("Error While Generating XML For City: " + city);
             logger.error(e.getMessage());
-            map.put("status", 0);
+            map.put("status", ProjectStatus.FAILED.getStatus());
             map.put("message", e.getMessage());
             return map;
         }
@@ -76,11 +77,11 @@ public class GlobalServiceImpl implements GlobalService {
                 String xmlString = generateXmlString(data.getCountryName(), data.getCityName());
                 fileServerService.uploadXmlToFTP(xmlString, data.getCountryName());
             }
-            map.put("status", 1);
+            map.put("status", ProjectStatus.SUCCESSFUL.getStatus());
             map.put("message", "Successfully Generated And Saved XML in FTP server");
             return map;
         } catch (Exception e) {
-            map.put("status", 0);
+            map.put("status", ProjectStatus.FAILED.getStatus());
             map.put("message", e.getMessage());
             return map;
         }
