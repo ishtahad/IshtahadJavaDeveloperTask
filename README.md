@@ -36,6 +36,11 @@ It will do all the above-mentioned tasks after hitting the API.
      User hits the URL : http://localhost:8080/
 A UI appears prompting user to select country from drop down, write city in a text box and select Date from date picker. After selecting required fields which is country and city, user needs to click on the button submit. Then a selection of data is shown to user and user can click on export button. If successful then user is prompt to a new screen where the generated XML file can be seen.
 
-![Home Page](image/ManualApproach.png)
-![Display Page](image/ManualApproach.png)
-![Success Page](image/ManualApproach.png)
+Home Page
+<img src="https://github.com/ishtahad/IshtahadJavaDeveloperTask/blob/main/images/ManualApproach1.PNG">
+
+Display Page
+<img src="https://github.com/ishtahad/IshtahadJavaDeveloperTask/blob/main/images/ManualApproach2.PNG">
+
+Success Page
+<img src="https://github.com/ishtahad/IshtahadJavaDeveloperTask/blob/main/images/ManualApproach3.PNG">
