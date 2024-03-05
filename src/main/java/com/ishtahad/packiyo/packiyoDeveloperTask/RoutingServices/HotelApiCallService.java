@@ -35,6 +35,7 @@ public class HotelApiCallService {
     }
 
     public HotelPrimaryDTO callApi(String cityName){
+        String cityNameOriginal = cityName;
         cityName = URLEncoder.encode(cityName, StandardCharsets.UTF_8);
         String url = baseUrl + cityName + "&locale=en_US";
         HttpHeaders headers = new HttpHeaders();
@@ -45,13 +46,13 @@ public class HotelApiCallService {
             ResponseEntity<HotelPrimaryDTO> response = restTemplate.exchange(url, HttpMethod.GET, requestEntity, HotelPrimaryDTO.class);
             HotelPrimaryDTO hotelPrimaryDTO = response.getBody();
             if(hotelPrimaryDTO != null && hotelPrimaryDTO.getRc().equals("GOOGLE_AUTOCOMPLETE")){
-                logger.error("No Data Found, Hotel API Call For City : " + cityName);
+                logger.error("No Data Found, Hotel API Call For City : " + cityNameOriginal);
                 return null;
             }
-            logger.info("SuccessFully Obtained Data Of Hotel for City: " + cityName);
+            logger.info("SuccessFully Obtained Data Of Hotel for City: " + cityNameOriginal);
             return response.getBody();
         }catch(Exception e){
-            logger.error("Error During Hotel API Call For City : " + cityName);
+            logger.error("Error During Hotel API Call For City : " + cityNameOriginal);
             logger.error(e.getMessage());
             return null;
         }

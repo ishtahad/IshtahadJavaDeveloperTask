@@ -27,14 +27,15 @@ public class WeatherApiCallService {
         this.restTemplate = restTemplate;
     }
     public WeatherPrimaryDTO callApi(String cityName){
+        String cityNameOriginal = cityName;
         try{
             cityName = URLEncoder.encode(cityName, StandardCharsets.UTF_8);
             String url = baseUrlWeather + cityName + "&APPID=" + apiKeyWeather ;
             ResponseEntity<WeatherPrimaryDTO> response = restTemplate.getForEntity(url, WeatherPrimaryDTO.class);
-            logger.info("SuccessFully Obtained Data Of Weather for City: " + cityName);
+            logger.info("SuccessFully Obtained Data Of Weather for City: " + cityNameOriginal);
             return response.getBody();
         } catch (Exception ex){
-            logger.error("Error During Weather API Call For City : " + cityName);
+            logger.error("Error During Weather API Call For City : " + cityNameOriginal);
             logger.error(ex.getMessage());
             return null;
         }
