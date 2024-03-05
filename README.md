@@ -52,6 +52,7 @@ Display Page. When Submit Button is clicked and successful data retrieval.
 <img src="https://github.com/ishtahad/IshtahadJavaDeveloperTask/blob/main/images/ManualApproach2.PNG">
 
 Success Page. When successful XML convertion achieved.
+
 <img src="https://github.com/ishtahad/IshtahadJavaDeveloperTask/blob/main/images/ManualApproach3.PNG">
 
 Please make sure to configure properties from application.properties.
